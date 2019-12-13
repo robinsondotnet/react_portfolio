@@ -1,6 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import Block from "../components/Block";
+import Project from "../components/Project";
+import Article from "../components/Article";
 
 interface LeftBlockProps {
   className?: string;
@@ -16,7 +18,7 @@ const LeftBlock: React.FC<LeftBlockProps> = ({
     <div
       className={classNames(className, "bg-blue-300", {
         "px-4 py-2 my-8": size === "sm",
-        "px-8 py-4 my-16": size === "md",
+        "px-8 py-4 my-16 mr-12": size === "md",
         "px-12 py-8 my-24": size === "lg"
       })}
     >
@@ -25,31 +27,12 @@ const LeftBlock: React.FC<LeftBlockProps> = ({
   );
 };
 
-interface ProjectProps {
-  title: string;
-  className?: string;
-}
-
-const Project: React.FC<ProjectProps> = ({ children, className, title }) => {
-  return (
-    <div className={classNames(className, "bg-blue-200 w-1/3 text-blue-700")}>
-      <div className="border-b-2 border-blue-300 py-2">
-        <h2 className="text-center font-bold  uppercase tracking-wide">
-          {title}
-        </h2>
-      </div>
-      <div className="py-2 px-4">{children}</div>
-    </div>
-  );
-};
-
 const IndexPage: React.FC<{}> = () => {
   return (
-    <div className="min-h-screen flex bg-indigo-300">
-      <div className="bg-green-300 w-1/3">
+    <div className="min-h-screen flex bg-blue-200 text-blue-700">
+      <div className="w-1/3">
         <div className="flex justify-center items-center flex-col py-8">
-          <h1 className="text-3xl mb-4">@robinsondotnet</h1>
-
+          <h1 className="text-3xl mb-4 text-gray-800">@robinsondotnet</h1>
           <img src="/logo.jpg" alt="robot" className="rounded-full w-48 h-48" />
         </div>
 
@@ -60,7 +43,7 @@ const IndexPage: React.FC<{}> = () => {
         <LeftBlock>Message</LeftBlock>
       </div>
 
-      <div className="bg-pink-300 w-full">
+      <div className="w-full">
         <Block title="Projects">
           <div className="mt-8 flex justify-between">
             <Project title="DotNet">Some text about dotnet</Project>
@@ -69,11 +52,18 @@ const IndexPage: React.FC<{}> = () => {
             </Project>
             <Project title="Software Dev">Some text about sf</Project>
           </div>
+          <div className="mt-8 flex">
+            <Project title="Open Source Projects" className="flex-auto">
+              Foo
+            </Project>
+          </div>
         </Block>
 
         <Block title="Blog">
-          <div>
-            <p>Hello</p>
+          <div className="mt-8 flex justify-between">
+            <Article title="Article 1"></Article>
+            <Article title="Article 2" className="mx-2"></Article>
+            <Article title="Article 3"></Article>
           </div>
         </Block>
       </div>
